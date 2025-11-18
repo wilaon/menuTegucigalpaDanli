@@ -1,14 +1,10 @@
-// ═══════════════════════════════════════════════════════════
-// DASHBOARD.JS - Lógica del menú principal
-// ═══════════════════════════════════════════════════════════
 
-// Verificar si estamos en la primera semana del mes
 function verificarPrimeraSemanaMes() {
   const hoy = new Date();
   const diaDelMes = hoy.getDate();
   
   // Mostrar solo del día 1 al 7
-  if (diaDelMes >= 1 && diaDelMes <= 30) {
+  if (diaDelMes >= 1 && diaDelMes <= 6) {
     const enlaceConfirmacion = document.getElementById('confirmacionLink');
     if (enlaceConfirmacion) {
       enlaceConfirmacion.style.display = 'block';
