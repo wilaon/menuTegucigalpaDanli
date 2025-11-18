@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gestión</title>
+  <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          <h1>⚡ Distribución Tegucigalpa-Danlí</h1>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Welcome Section -->
+      <div class="welcome-section">
+        <h2>Seleccione el tipo de solicitud</h2>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="cards-grid">
+        
+        <!-- Card 1: Horas Extras -->
+        <a href="formulario-horas.html" class="card">
+          <div class="card-icon">🕐</div>
+          <h3 class="card-title">Solicitud de Horas Extras</h3>
+          <p class="card-description">Registrar horas extras trabajadas</p>
+          <div class="card-footer">
+            <span class="card-badge">Disponible</span>
+          </div>
+        </a>
+
+        <!-- Card 2: Tiempo Compensatorio -->
+        <a href="#" class="card card-disabled">
+          <div class="card-icon">🔄</div>
+          <h3 class="card-title">Tiempo Compensatorio</h3>
+          <p class="card-description">Solicitar compensación de tiempo</p>
+          <div class="card-footer">
+            <span class="card-badge badge-warning">Próximamente</span>
+          </div>
+        </a>
+
+        <!-- Card 3: Otras Solicitudes -->
+        <a href="#" class="card card-disabled">
+          <div class="card-icon">📋</div>
+          <h3 class="card-title">Otras Solicitudes</h3>
+          <p class="card-description">Más opciones disponibles próximamente</p>
+          <div class="card-footer">
+            <span class="card-badge badge-info">Próximamente</span>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Banner Confirmación (solo primera semana) -->
+      <div id="confirmacionLink" class="confirmacion-section" style="display: none;">
+        <div class="confirmacion-box">
+          <div class="confirmacion-icon">✅</div>
+          <div class="confirmacion-content">
+            <h4>¿Ya confirmaste tus horas del mes anterior?</h4>
+            <p>Recuerda confirmar tus horas aprobadas antes del día 7</p>
+            <a href="https://confirmacionhoras.pages.dev/" target="_blank" class="btn-confirmacion">
+              📋 Ir a Confirmación de Horas
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; Sistema - Distribución Eléctrica Sector Tegucigalpa-Danlí</p>
+    </footer>
+  </div>
+
+  <script src="menu.js"></script>
+</body>
+</html>
