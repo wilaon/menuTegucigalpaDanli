@@ -67,7 +67,7 @@ function configurarCalendario(elementoFecha) {
     
     const hoy = new Date();
     const hace20Dias = new Date(hoy);
-    hace20Dias.setDate(hoy.getDate() - 8);
+    hace20Dias.setDate(hoy.getDate() - 7);
     
     elementoFecha.min = hace20Dias.toISOString().split('T')[0];
     elementoFecha.max = hoy.toISOString().split('T')[0];

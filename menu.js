@@ -3,7 +3,7 @@ function verificarPrimeraSemanaMes() {
   const hoy = new Date();
   const diaDelMes = hoy.getDate();
   
-  // Mostrar solo del día 1 al 7
+
   if (diaDelMes >= 1 && diaDelMes <= 6) {
     const enlaceConfirmacion = document.getElementById('confirmacionLink');
     if (enlaceConfirmacion) {
@@ -32,7 +32,6 @@ function deshabilitarCartillasProximamente() {
 
 // Inicialización
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('🚀 Dashboard cargado');
   verificarPrimeraSemanaMes();
   deshabilitarCartillasProximamente();
 });
