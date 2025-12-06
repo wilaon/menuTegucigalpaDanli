@@ -179,13 +179,11 @@ async function procesarFormulario(e) {
 function inicializarEventos() {
     // Input DNI - solo números
   elementos.dni.addEventListener('input', function(e) {
-        // Limpiar solo números
+        
         let valor = e.target.value.replace(/\D/g, '');
-        
-        // Limitar a 13 dígitos
+       
         valor = valor.substring(0, 13);
-        
-        // Formatear con guiones: ####-####-#####
+
         if (valor.length > 8) {
             valor = valor.substring(0, 4) + '-' + valor.substring(4, 8) + '-' + valor.substring(8);
         } else if (valor.length > 4) {
@@ -194,7 +192,7 @@ function inicializarEventos() {
         
         e.target.value = valor;
         
-        // Validar cuando tenga formato completo (15 caracteres)
+        
         if (valor.length === 15) {
             const dniSinGuiones = valor.replace(/-/g, '');
             validarDNI(dniSinGuiones);
@@ -221,7 +219,7 @@ async function inicializar() {
     try {
         console.log('Iniciando sistema...');
         
-        // Configurar fecha
+        
         configurarCalendario(elementos.fecha);
         
         // Iniciar reloj
@@ -244,10 +242,9 @@ async function inicializar() {
         // Configurar eventos
         inicializarEventos();
         
-        console.log('✅ Sistema iniciado correctamente');
         
     } catch (error) {
-        console.error('❌ Error al inicializar:', error);
+       
         mostrarMensaje(elementos.errorMessage, 'Error al cargar el sistema', 'error');
     }
 }

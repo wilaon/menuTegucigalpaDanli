@@ -54,8 +54,8 @@ function llenarSelect(selectElement, opciones, valorPorDefecto = '') {
             option.textContent = opcion;
         } else {
            const texto = opcion.texto || opcion.turno || opcion.nombre;
-            option.value = texto;      // ✅ Value = texto
-            option.textContent = texto; // ✅ Text = texto
+            option.value = texto;      
+            option.textContent = texto;
         }
         selectElement.appendChild(option);
     });
@@ -67,7 +67,7 @@ function configurarCalendario(elementoFecha) {
     
     const hoy = new Date();
     const hace20Dias = new Date(hoy);
-    hace20Dias.setDate(hoy.getDate() - 13);
+    hace20Dias.setDate(hoy.getDate() - 8);
     
     elementoFecha.min = hace20Dias.toISOString().split('T')[0];
     elementoFecha.max = hoy.toISOString().split('T')[0];
@@ -102,9 +102,7 @@ function calcularHoras(horaEntrada, horaSalida) {
     
     if (entradaMin === null || salidaMin === null) return null;
     
-    // Si la salida es menor, asumimos que es al día siguiente
     if (salidaMin <= entradaMin) salidaMin += 24 * 60;
     
-    // Retornar total de horas (simple, solo para validación)
     return (salidaMin - entradaMin) / 60;
 }

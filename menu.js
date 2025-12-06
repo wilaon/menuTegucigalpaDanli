@@ -8,10 +8,10 @@ function verificarPrimeraSemanaMes() {
     const enlaceConfirmacion = document.getElementById('confirmacionLink');
     if (enlaceConfirmacion) {
       enlaceConfirmacion.style.display = 'block';
-      console.log('✅ Banner de confirmación visible (día ' + diaDelMes + ')');
+      console.log(' visible (día ' + diaDelMes + ')');
     }
   } else {
-    console.log('ℹ️ Banner oculto - Fuera de la primera semana (día ' + diaDelMes + ')');
+    console.log(' Fuera de la primera semana (día ' + diaDelMes + ')');
   }
 }
 
