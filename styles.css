@@ -212,13 +212,11 @@ body {
     }
     
     .btn {
-        padding: 10px;      /* ✅ Padding más pequeño en móvil */
+        padding: 10px;      
         font-size: 13px;
     }
 }
 
-
- /*  ═══ NUEVO: Botón flotante de regreso ═══ */
 
 
 .btn-back-float {

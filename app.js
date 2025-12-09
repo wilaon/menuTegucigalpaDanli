@@ -41,7 +41,7 @@ function validarDNI(dniSinGuiones) {
         } else {
             elementos.nombre.value = '';
             elementos.nombre.readOnly = false;
-            elementos.dniValidation.textContent = '❌ DNI no registrado';
+            elementos.dniValidation.textContent = ' DNI no registrado';
             elementos.dniValidation.className = 'validation-message error show';
             elementos.submitBtn.disabled = true;
         }
