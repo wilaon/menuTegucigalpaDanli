@@ -21,7 +21,6 @@ async function cargarEmpleados(forzar = false) {
         if (data.success) {
             empleadosCache = data.empleados;
             cacheTimestamp = ahora;
-            console.log('Empleados cargados:', Object.keys(empleadosCache).length);
             return empleadosCache;
         }
         
@@ -40,12 +39,10 @@ function buscarEmpleado(dni) {
 // CARGAR TURNOS DESDE SERVIDOR
 async function cargarTurnos() {
     try {
-        //console.log('Cargando turnos desde servidor...');
         const response = await fetch(`${CONFIG.GOOGLE_SCRIPT_URL}?action=getTurnos`);
         const data = await response.json();
         
         if (data.success) {
-            console.log('Turnos cargados:', data.turnos.length);
             return data.turnos;
         }
         
@@ -62,7 +59,6 @@ async function cargarIngenierosTurno() {
         const data = await response.json();
         
         if (data.success) {
-            console.log('Ingenieros cargados:', data.ingenieros.length);
             return data.ingenieros;
         }
         
@@ -73,11 +69,23 @@ async function cargarIngenierosTurno() {
     }
 }
 
-// ENVIAR ASISTENCIA - MODO NO-CORS (como tu código original)
+// ENVIAR ASISTENCIA
 async function guardarAsistencia(datos) {
     try {
-        console.log('Enviando asistencia al servidor...');
-        // Preparar fila
+        const validacion = validarHorasTurno(
+            datos.turno,
+            datos.horaEntrada,
+            datos.horaSalida
+        );
+        
+        if (!validacion.valido) {
+            return {
+                success: false,
+                mensaje: validacion.error,
+                errores: [validacion.error]
+            };
+        }
+        
         const fila = [
             new Date().toISOString(),
             datos.fecha,
@@ -90,10 +98,8 @@ async function guardarAsistencia(datos) {
             datos.observaciones || '',
         ];
         
-        // VOLVEMOS AL MODO no-cors COMO TU CÓDIGO ORIGINAL
-        await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
+        const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL,{
             method: 'POST',
-            mode: 'no-cors',  // ← ESTO EVITA LOS ERRORES CORS
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -103,22 +109,45 @@ async function guardarAsistencia(datos) {
             })
         });
         
-        console.log('Asistencia enviada (modo no-cors)');
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP ${response.status}: ${errorText}`);
+        }
         
-        // Con no-cors no podemos leer la respuesta del servidor,
-        // pero sabemos que se envió correctamente
-        return { 
-            success: true,
-            mensaje: 'Asistencia enviada correctamente',
-            horasCalculadas: 'Calculadas por servidor'
-        };
+        // LEER RESPUESTA 
+        const resultado = await response.json();
+        
+        console.log(' Respuesta del servidor:', resultado);
+        
+        //SERVIDOR RESPONDE
+        if (resultado.success) {
+            return {
+                success: true,
+                mensaje: 'Asistencia registrada correctamente',
+                datos: resultado
+            };
+        } else {
+            return {
+                success: false,
+                mensaje: resultado.error || 'Error al guardar',
+                errores: [resultado.error || 'Error desconocido']
+            };
+        }
         
     } catch (error) {
-        console.error('Error de comunicación:', error);
+        console.error(' Error:', error);
+        
+        if (error.message.includes('Failed to fetch')) {
+            return { 
+                success: false, 
+                mensaje: 'Sin conexión al servidor',
+                errores: ['Verifique su conexión a internet']
+            };
+        }
         return { 
             success: false, 
-            mensaje: 'Error de conexión con el servidor',
-            errores: ['Error de conectividad'] 
+            mensaje: 'Error: ' + error.message,
+            errores: [error.message]
         };
     }
 }

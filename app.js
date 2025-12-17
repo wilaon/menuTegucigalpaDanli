@@ -57,49 +57,67 @@ function validarDNI(dniSinGuiones) {
 
 
 // VALIDAR HORAS EN TIEMPO REAL
-function validarHorasTurno() {
-    const turnoSeleccionado = elementos.turno.value;
-    const horaEntrada = elementos.horaEntrada.value;
-    const horaSalida = elementos.horaSalida.value;
+function validarHorasTurno(datosTurno = null, datosEntrada = null, datosSalida = null) {
+    
+    // Si NO se pasan parámetros, usar valores del DOM (validación UI)
+    const turnoSeleccionado = datosTurno || elementos.turno.value;
+    const horaEntrada = datosEntrada || elementos.horaEntrada.value;
+    const horaSalida = datosSalida || elementos.horaSalida.value;
     
     if (!turnoSeleccionado || !horaEntrada || !horaSalida) {
-        return; // No validar si falta información
+        elementos.submitBtn.disabled = true;
+        return { valido: false, error: 'Campos incompletos' };
     }
     
     const totalHoras = calcularHoras(horaEntrada, horaSalida);
-    if (!totalHoras) return;
+    if (!totalHoras) {
+        elementos.submitBtn.disabled = true;
+        return { valido: false, error: 'Error al calcular horas' };
+    }
     
     // Turnos especiales sin restricción
     const turnosEspeciales = ['1er Día Descanso', '2do Día Descanso', 'Feriado'];
     
     if (turnosEspeciales.includes(turnoSeleccionado)) {
-        // Turno especial - siempre válido
-        elementos.submitBtn.disabled = false;
-        return;
+        elementos.errorMessage.classList.remove('show');
+        return { valido: true };
     }
     
     // Determinar horas mínimas
     let horasMinimas = 0;
-    if (['06:00 - 15:00', '07:00 - 16:00', '09:00 - 18:00'].includes(turnoSeleccionado)) {
+    if (['06:00-15:00', '07:00-16:00', '09:00-18:00'].includes(turnoSeleccionado)) {
         horasMinimas = 9;
-    } else if (['13:00 - 20:00', '14:00 - 21:00','07:00 - 14:00'].includes(turnoSeleccionado)) {
+    } else if (['13:00-20:00', '14:00-21:00','07:00-14:00'].includes(turnoSeleccionado)) {
         horasMinimas = 7;
-    } else if (['17:00 - 23:00', '18:00 - 00:00', '00:00 - 06:00'].includes(turnoSeleccionado)) {
+    } else if (['17:00-23:00', '18:00-00:00', '00:00-06:00'].includes(turnoSeleccionado)) {
         horasMinimas = 6;
     }
     
     // Validar horas
     if (totalHoras < horasMinimas) {
-        mostrarMensaje(
-            elementos.errorMessage, 
-            `El turno ${turnoSeleccionado} requiere ${horasMinimas} horas. Ingresó ${totalHoras.toFixed(2)} horas`, 
-            'error'
-        );
+        const mensaje = ` Jornada incompleta: Solo trabajó ${totalHoras.toFixed(2)} horas.`;
+        
+        mostrarMensaje(elementos.errorMessage, mensaje, 'error');
         elementos.submitBtn.disabled = true;
-    } else {
-        elementos.submitBtn.disabled = false;
-        elementos.errorMessage.classList.remove('show');
+        
+        return { valido: false, error: mensaje };
     }
+    
+    const horasExtras = totalHoras - horasMinimas;
+    
+    if (horasExtras <= 0) {
+        const mensaje = `Sin horas extras no laboro mas de las horas requeridas en el turno`;
+        
+        mostrarMensaje(elementos.errorMessage, mensaje, 'error', 8000);
+        elementos.submitBtn.disabled = true;
+        
+        return { valido: false, error: mensaje };
+    }
+    
+    elementos.submitBtn.disabled = false;
+    elementos.errorMessage.classList.remove('show');
+    
+    return { valido: true };
 }
 
 
@@ -121,6 +139,17 @@ async function procesarFormulario(e) {
     if (!elementos.turnoIngeniero.value) {
          mostrarMensaje(elementos.errorMessage, 'Debe seleccionar un Ingeniero de Turno', 'error');
         return;
+    }
+
+    const validacionPrevia = validarHorasTurno(
+        elementos.turno.value,
+        elementos.horaEntrada.value,
+        elementos.horaSalida.value
+    );
+    
+    if (!validacionPrevia.valido) {
+        mostrarMensaje(elementos.errorMessage, validacionPrevia.error, 'error', 8000);
+        return; 
     }
 
     
@@ -211,14 +240,11 @@ function inicializarEventos() {
     // Submit formulario
     elementos.form.addEventListener('submit', procesarFormulario);
     
-    console.log('Eventos inicializados');
 }
 
 // INICIALIZACIÓN
 async function inicializar() {
     try {
-        console.log('Iniciando sistema...');
-        
         
         configurarCalendario(elementos.fecha);
         
@@ -226,16 +252,12 @@ async function inicializar() {
         actualizarReloj();
         setInterval(actualizarReloj, 1000);
         
-        // Cargar datos del servidor
-       
-        await cargarEmpleados();
-        
+        // Cargar datos del servidor 
+        await cargarEmpleados(); 
        
         const turnos = await cargarTurnos();
         llenarSelect(elementos.turno, turnos, 'Seleccionar turno...');
         
-        
-        console.log('Cargando ingenieros...');
         const ingenieros = await cargarIngenierosTurno();
         llenarSelect(elementos.turnoIngeniero, ingenieros, 'Seleccionar ingeniero...');
         

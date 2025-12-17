@@ -4,15 +4,12 @@ function verificarPrimeraSemanaMes() {
   const diaDelMes = hoy.getDate();
   
 
-  if (diaDelMes >= 1 && diaDelMes <= 6) {
+  if (diaDelMes >= 2 && diaDelMes <= 7) {
     const enlaceConfirmacion = document.getElementById('confirmacionLink');
     if (enlaceConfirmacion) {
       enlaceConfirmacion.style.display = 'block';
-      console.log(' visible (día ' + diaDelMes + ')');
     }
-  } else {
-    console.log(' Fuera de la primera semana (día ' + diaDelMes + ')');
-  }
+  } 
 }
 
 // Deshabilitar enlaces de cartillas "Próximamente"
