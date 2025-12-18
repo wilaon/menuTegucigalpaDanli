@@ -95,7 +95,7 @@ function validarHorasTurno(datosTurno = null, datosEntrada = null, datosSalida =
     
     // Validar horas
     if (totalHoras < horasMinimas) {
-        const mensaje = ` Jornada incompleta: Solo trabajó ${totalHoras.toFixed(2)} horas.`;
+        const mensaje = ` Jornada incompleta`;
         
         mostrarMensaje(elementos.errorMessage, mensaje, 'error');
         elementos.submitBtn.disabled = true;
