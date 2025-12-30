@@ -72,19 +72,6 @@ async function cargarIngenierosTurno() {
 // ENVIAR ASISTENCIA
 async function guardarAsistencia(datos) {
     try {
-        const validacion = validarHorasTurno(
-            datos.turno,
-            datos.horaEntrada,
-            datos.horaSalida
-        );
-        
-        if (!validacion.valido) {
-            return {
-                success: false,
-                mensaje: validacion.error,
-                errores: [validacion.error]
-            };
-        }
         
         const fila = [
             new Date().toISOString(),
