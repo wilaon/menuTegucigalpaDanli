@@ -4,7 +4,7 @@ function verificarPrimeraSemanaMes() {
   const diaDelMes = hoy.getDate();
   
 
-  if (diaDelMes >= 2 && diaDelMes <= 8) {
+  if (diaDelMes >= 2 && diaDelMes <= 9) {
     const enlaceConfirmacion = document.getElementById('confirmacionLink');
     if (enlaceConfirmacion) {
       enlaceConfirmacion.style.display = 'block';
