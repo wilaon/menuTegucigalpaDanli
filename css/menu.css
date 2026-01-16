@@ -1,35 +1,11 @@
-:root {
-  --primary: #161C2E;
-  --accent: #ff6b00;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --info: #3b82f6;
-  --gray-50: #f9fafb;
-  --gray-100: #f3f4f6;
-  --gray-200: #e5e7eb;
-  --gray-600: #4b5563;
-  --gray-900: #111827;
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --radius: 12px;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/**
+ * ═══════════════════════════════════════════════════════════
+ * MENU.CSS - Estilos del menú principal
+ * ═══════════════════════════════════════════════════════════
+ */
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   background: var(--gray-50);
-  color: var(--gray-900);
-  line-height: 1.6;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
 }
 
 .container {
@@ -38,9 +14,10 @@ a {
   flex-direction: column;
 }
 
-/* ==================== */
-/* HEADER               */
-/* ==================== */
+/* ═══════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════ */
+
 .header {
   background: linear-gradient(135deg, var(--primary) 0%, #2a3f5f 100%);
   color: white;
@@ -65,9 +42,10 @@ a {
   opacity: 0.9;
 }
 
-/* ==================== */
-/* MAIN CONTENT         */
-/* ==================== */
+/* ═══════════════════════════════════════════════════════════
+   MAIN CONTENT
+   ═══════════════════════════════════════════════════════════ */
+
 .main-content {
   flex: 1;
   max-width: 1200px;
@@ -92,9 +70,10 @@ a {
   font-size: 1.125rem;
 }
 
-/* ==================== */
-/* CARDS GRID           */
-/* ==================== */
+/* ═══════════════════════════════════════════════════════════
+   CARDS GRID
+   ═══════════════════════════════════════════════════════════ */
+
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -102,14 +81,11 @@ a {
   margin-bottom: 2rem;
 }
 
-/* ==================== */
-/* CARD                 */
-/* ==================== */
 .card {
   background: white;
   border-radius: var(--radius);
   padding: 2rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-sm);
   border: 2px solid var(--gray-200);
   transition: all 0.3s ease;
   display: flex;
@@ -190,9 +166,10 @@ a {
   border-color: var(--gray-200);
 }
 
-/* ==================== */
-/* CONFIRMACIÓN BANNER  */
-/* ==================== */
+/* ═══════════════════════════════════════════════════════════
+   CONFIRMACIÓN BANNER
+   ═══════════════════════════════════════════════════════════ */
+
 .confirmacion-section {
   margin-top: 3rem;
   animation: slideIn 0.5s ease;
@@ -201,7 +178,7 @@ a {
 .confirmacion-box {
   background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
   border: 2px solid #0ea5e9;
-  border-radius: 12px;
+  border-radius: var(--radius);
   padding: 20px;
   display: flex;
   gap: 15px;
@@ -236,7 +213,7 @@ a {
   padding: 10px 20px;
   background: #0ea5e9;
   color: white;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-weight: 600;
   font-size: 14px;
   text-decoration: none;
@@ -261,9 +238,10 @@ a {
   }
 }
 
-/* ==================== */
-/* FOOTER               */
-/* ==================== */
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════ */
+
 .footer {
   background: var(--gray-100);
   text-align: center;
@@ -273,9 +251,10 @@ a {
   border-top: 1px solid var(--gray-200);
 }
 
-/* ==================== */
-/* ANIMATIONS           */
-/* ==================== */
+/* ═══════════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════════ */
+
 .card {
   animation: fadeIn 0.5s ease backwards;
 }
@@ -295,9 +274,10 @@ a {
   }
 }
 
-/* ==================== */
-/* RESPONSIVE           */
-/* ==================== */
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+
 @media (max-width: 768px) {
   .cards-grid {
     grid-template-columns: 1fr;

@@ -1,90 +1,93 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control Horas Extras</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Horas Extras</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/formulario.css">
 </head>
 <body>
-    <a href="index.html" class="btn-back-float" title="Volver al menú">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M19 12H5M12 19l-7-7 7-7"/>
-        </svg>
-        Menú
-    </a>
-    <div class="container">
-        <div class="header">
-            <h1>Solicitud de Horas Extras</h1>
-            <div class="clock" id="clock"></div>
+  <!-- Botón de regreso -->
+  <a href="/" class="btn-back-float" title="Volver al menú">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M19 12H5M12 19l-7-7 7-7"/>
+    </svg>
+    Menú
+  </a>
+  
+  <div class="container">
+    <div class="header">
+      <h1>Solicitud de Horas Extras</h1>
+      <div class="clock" id="clock"></div>
+    </div>
+    
+    <div class="form-container">
+      <form id="attendanceForm">
+        <div class="form-group">
+          <label>Fecha *</label>
+          <input type="date" id="fecha" required>
         </div>
         
-        <div class="form-container">
-            <form id="attendanceForm">
-                <div class="form-group">
-                    <label>Fecha *</label>
-                    <input type="date" id="fecha" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>DNI*</label>
-                    <input type ="text" id ="dni" maxlength ="15" required placeholder ="####-####-#####">
-                    <div class="validation-message" id="dniValidation"></div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Nombre Completo *</label>
-                    <input type="text" id="nombre" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Turno *</label>
-                    <select id="turno" required>
-                        <option value="">Cargando turnos...</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>Hora Entrada</label>
-                    <input type="time" id="horaEntrada" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Hora Salida</label>
-                    <input type="time" id="horaSalida" required>
-                </div>
-                
-               <div class="form-group">
-                    <label>Ingeniero que aprueba solicitud *</label>
-                    <select id="turnoIngeniero" name="ingeniero" required>
-                        <option value="">Cargando turnos...</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>Observaciones</label>
-                    <textarea id="observaciones" rows="3" maxlength="130" placeholder="Breve Descripción" required></textarea>
-                </div>
-                
-                <button type="submit" class="btn" id="submitBtn" disabled>
-                    Registrar
-                </button>
-            </form>
-            
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p>Procesando...</p>
-            </div>
-            
-            <div class="message success" id="successMessage"></div>
-            <div class="message error" id="errorMessage"></div>
+        <div class="form-group">
+          <label>DNI *</label>
+          <input type="text" id="dni" maxlength="15" required placeholder="####-####-#####">
+          <div class="validation-message" id="dniValidation"></div>
         </div>
-    </div>
+        
+        <div class="form-group">
+          <label>Nombre Completo *</label>
+          <input type="text" id="nombre" required>
+        </div>
 
-    <!-- Scripts en orden de dependencia -->
-    <script src="config.js"></script>
-    <script src="utils.js"></script>
-    <script src="api.js"></script>
-    <script src="app.js"></script>
+        <div class="form-group">
+          <label>Turno *</label>
+          <select id="turno" required>
+            <option value="">Cargando turnos...</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Hora Entrada</label>
+          <input type="time" id="horaEntrada" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Hora Salida</label>
+          <input type="time" id="horaSalida" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Ingeniero que aprueba solicitud *</label>
+          <select id="turnoIngeniero" name="ingeniero" required>
+            <option value="">Cargando ingenieros...</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Observaciones</label>
+          <textarea id="observaciones" rows="3" maxlength="130" placeholder="Breve Descripción" required></textarea>
+        </div>
+        
+        <button type="submit" class="btn" id="submitBtn" disabled>
+          Registrar
+        </button>
+      </form>
+      
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Procesando...</p>
+      </div>
+      
+      <div class="message success" id="successMessage"></div>
+      <div class="message error" id="errorMessage"></div>
+    </div>
+  </div>
+
+  <!-- Scripts en orden de dependencia -->
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/formulario.js"></script>
 </body>
 </html>

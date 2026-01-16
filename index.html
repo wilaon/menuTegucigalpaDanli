@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistema de Gestión</title>
-  <link rel="stylesheet" href="menu.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/menu.css">
 </head>
 <body>
   <div class="container">
@@ -20,15 +21,12 @@
     <!-- Main Content -->
     <main class="main-content">
       <!-- Welcome Section -->
-      <div class="welcome-section">
-        <h2>Seleccione el tipo de solicitud</h2>
-      </div>
 
       <!-- Cards Grid -->
       <div class="cards-grid">
         
         <!-- Card 1: Horas Extras -->
-        <a href="formulario-horas.html" class="card">
+        <a href="/formulario-horas" class="card">
           <div class="card-icon">🕐</div>
           <h3 class="card-title">Solicitud de Horas Extras</h3>
           <p class="card-description">Registrar horas extras trabajadas</p>
@@ -37,37 +35,37 @@
           </div>
         </a>
 
-        <!-- Card 2: Tiempo Compensatorio 
-        <a href="#" class="card card-disabled">
-          <div class="card-icon">🔄</div>
-          <h3 class="card-title">Tiempo Compensatorio</h3>
-          <p class="card-description">Solicitar compensación de tiempo</p>
+        <!-- Card 2: Confirmación de Horas -->
+        <a href="https://asistenciaausenciareloj.pages.dev/" class="card">
+          <div class="card-icon">📋</div>
+          <h3 class="card-title">Asistencia (Ausencia de Biometrico)</h3>
+          <p class="card-description">Asistencia Diaria(Talanga/Guaimaca,Trojes y Patuca)</p>
           <div class="card-footer">
-            <span class="card-badge badge-warning">Próximamente</span>
+            <span class="card-badge badge-info">Disponible</span>
           </div>
-        </a> -->
+        </a>
 
         <!-- Card 3: Otras Solicitudes -->
         <a href="#" class="card card-disabled">
-          <div class="card-icon">📋</div>
+          <div class="card-icon">📄</div>
           <h3 class="card-title">Otras Solicitudes</h3>
           <p class="card-description">Más opciones disponibles próximamente</p>
           <div class="card-footer">
-            <span class="card-badge badge-info">Próximamente</span>
+            <span class="card-badge badge-warning">Próximamente</span>
           </div>
         </a>
 
       </div>
 
       <!-- Banner Confirmación (solo primera semana) -->
-      <div id="confirmacionLink" class="confirmacion-section" style="display: none;">
+      <div id="banner" class="confirmacion-section" >
         <div class="confirmacion-box">
           <div class="confirmacion-icon">✅</div>
           <div class="confirmacion-content">
-            <h4>¿Ya confirmaste tus horas del mes anterior?</h4>
-            <p>Recuerda confirmar tus horas aprobadas en los primeros días del mes</p>
-            <a href="https://confirmacionhoras.pages.dev/" target="_blank" class="btn-confirmacion">
-              📋 Ir a Confirmación de Horas
+            <h4>Verificar los ultimos 5 registros ingresados o confirmar</h4>
+            <p>Recuerda confirmar tus horas aprobadas entre 2-7 de cada mes</p>
+            <a href="/confirmacion-horas" class="btn-confirmacion">
+              📋 Ir (Verificar o confirmar)
             </a>
           </div>
         </div>
@@ -81,6 +79,8 @@
     </footer>
   </div>
 
-  <script src="menu.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/menu.js"></script>
 </body>
 </html>

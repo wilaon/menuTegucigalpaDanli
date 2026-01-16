@@ -1,0 +1,199 @@
+/**
+ * ═══════════════════════════════════════════════════════════
+ * FORMULARIO.CSS - Estilos del formulario de horas extras
+ * ═══════════════════════════════════════════════════════════
+ */
+
+body {
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Contenedor principal */
+.container {
+  max-width: 500px;
+  margin: 50px auto;
+  background: white;
+  border-radius: 5px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+/* Header */
+.header {
+  background-color: var(--primary);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header h1 {
+  font-size: 20px;
+  margin: 0;
+  font-weight: 600;
+}
+
+.clock {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-top: 5px;
+}
+
+/* Formulario */
+.form-container {
+  padding: 20px;
+  background-color: white;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.form-group input:disabled,
+.form-group input[readonly] {
+  background-color: #f7fafc;
+  cursor: not-allowed;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* Mensajes de validación */
+.validation-message {
+  font-size: 14px;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 4px;
+  display: none;
+}
+
+.validation-message.show {
+  display: block;
+}
+
+.validation-message.success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.validation-message.error {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* Botón */
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background-color: var(--primary);
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Mensajes */
+.message {
+  padding: 15px;
+  border-radius: 4px;
+  margin: 15px 0;
+  text-align: center;
+  display: none;
+}
+
+.message.show {
+  display: block;
+}
+
+/* Loading específico del formulario */
+.loading {
+  display: none;
+  text-align: center;
+  padding: 20px;
+}
+
+.loading p {
+  margin-top: 10px;
+  color: #666;
+}
+
+.loading .spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid var(--primary);
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    margin: 20px auto;
+    width: 95%;
+  }
+
+  .form-container {
+    padding: 15px;
+  }
+
+  .form-group {
+    margin-bottom: 12px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 10px;
+    font-size: 13px;
+  }
+}

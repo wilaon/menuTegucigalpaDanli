@@ -1,0 +1,505 @@
+/**
+ * ═══════════════════════════════════════════════════════════
+ * BASE.CSS - Variables y estilos compartidos
+ * ═══════════════════════════════════════════════════════════
+ */
+
+:root {
+  /* Colores principales */
+  --primary: #161C2E;
+  --accent: #ff6b00;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #3b82f6;
+  
+  /* Grises */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-600: #4b5563;
+  --gray-900: #111827;
+  --muted: #6b7280;
+  
+  /* Fondos */
+  --bg-gradient: linear-gradient(135deg, #0080c0 0%, #161C2E 100%);
+  --card-bg: #ffffff;
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  
+  /* Bordes */
+  --radius: 12px;
+  --radius-sm: 8px;
+  
+  /* Transiciones */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: var(--gray-900);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Clases utilitarias */
+.hidden {
+  display: none !important;
+}
+
+.show {
+  display: block !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   OVERLAY DE CARGA INICIAL
+   ═══════════════════════════════════════════════════════════ */
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-gradient);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity var(--transition-slow), visibility var(--transition-slow);
+}
+
+.loading-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-overlay .loading-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loading-overlay .loading-title {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.loading-overlay .loading-status {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  margin-bottom: 25px;
+  min-height: 20px;
+  transition: opacity var(--transition-fast);
+}
+
+.loading-overlay .loading-progress {
+  width: 200px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loading-overlay .loading-progress-bar {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  width: 0%;
+  transition: width var(--transition-normal);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   OVERLAY DE PROCESAMIENTO (al enviar formulario)
+   ═══════════════════════════════════════════════════════════ */
+
+.processing-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(22, 28, 46, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+.processing-overlay .processing-card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 40px 50px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  animation: scaleIn 0.3s ease;
+}
+
+.processing-overlay .processing-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+  animation: bounce 1s ease infinite;
+}
+
+.processing-overlay .processing-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 8px;
+}
+
+.processing-overlay .processing-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.processing-overlay .processing-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--gray-200);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MENSAJES COMPARTIDOS
+   ═══════════════════════════════════════════════════════════ */
+
+.message,
+.notice {
+  padding: 12px 15px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  margin-bottom: 15px;
+  animation: slideDown var(--transition-normal);
+}
+
+.message.success,
+.notice.success {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.notice.info {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+
+.message.error,
+.notice.error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.notice.warning {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LOADING SPINNER
+   ═══════════════════════════════════════════════════════════ */
+
+.loading {
+  text-align: center;
+  padding: 30px;
+  color: var(--muted);
+}
+
+.spinner {
+  border: 3px solid var(--gray-200);
+  border-top: 3px solid var(--accent);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BOTONES - ANIMACIONES Y ESTADOS
+   ═══════════════════════════════════════════════════════════ */
+
+.btn,
+button {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+/* Efecto ripple en botones */
+.btn::after,
+button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:active::after,
+button:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Estado de procesando */
+.btn.processing,
+button.processing {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.btn.processing::before,
+button.processing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Hover mejorado */
+.btn:not(:disabled):hover,
+button:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:not(:disabled):active,
+button:not(:disabled):active {
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BOTÓN DE REGRESO FLOTANTE
+   ═══════════════════════════════════════════════════════════ */
+
+.btn-back-float {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: white;
+  color: var(--primary);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+}
+
+.btn-back-float:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateX(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-back-float svg {
+  width: 20px;
+  height: 20px;
+  transition: transform var(--transition-normal);
+}
+
+.btn-back-float:hover svg {
+  transform: translateX(-3px);
+}
+
+@media (max-width: 768px) {
+  .btn-back-float {
+    top: 10px;
+    left: 10px;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   INPUTS - TRANSICIONES
+   ═══════════════════════════════════════════════════════════ */
+
+input,
+select,
+textarea {
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HISTORIAL DE SOLICITUDES
+   ═══════════════════════════════════════════════════════════ */
+
+.solicitudes-recientes {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gray-200);
+}
+
+.solicitudes-recientes h4 {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.solicitud-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background: var(--gray-50);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+  font-size: 13px;
+  transition: background var(--transition-fast);
+}
+
+.solicitud-item:hover {
+  background: var(--gray-100);
+}
+
+.solicitud-item .fecha {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.solicitud-item .horas {
+  font-weight: 600;
+  color: var(--success);
+}
+
+.solicitud-item .turno {
+  color: var(--gray-600);
+  font-size: 12px;
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Sin solicitudes */
+.sin-solicitudes {
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CONTADOR DE CARACTERES
+   ═══════════════════════════════════════════════════════════ */
+
+.char-counter {
+  font-size: 12px;
+  color: var(--muted);
+  text-align: right;
+  margin-top: 4px;
+  transition: color var(--transition-fast);
+}
+
+.char-counter.warning {
+  color: var(--warning);
+}
+
+.char-counter.danger {
+  color: var(--danger);
+}

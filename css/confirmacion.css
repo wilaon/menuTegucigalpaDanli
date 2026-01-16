@@ -1,0 +1,277 @@
+/**
+ * ═══════════════════════════════════════════════════════════
+ * CONFIRMACION.CSS - Estilos del portal de confirmación
+ * ═══════════════════════════════════════════════════════════
+ */
+
+html, body {
+  height: 100%;
+  background: var(--bg-gradient);
+}
+
+.wrap {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 1100px;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+}
+
+header {
+  padding: 20px 25px;
+  background: linear-gradient(90deg, var(--accent), #ffb366);
+  color: #fff;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+header .subtitle {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-top: 5px;
+}
+
+main {
+  padding: 20px 25px;
+}
+
+/* Sección de búsqueda */
+.search-section {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+input[type="text"] {
+  flex: 1;
+  min-width: 250px;
+  padding: 12px 15px;
+  border-radius: var(--radius-sm);
+  border: 2px solid #e0e0e0;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+input[type="text"]:disabled {
+  background: #f3f4f6;
+  cursor: not-allowed;
+}
+
+/* Botones */
+.btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-secondary {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid var(--gray-200);
+}
+
+.btn-success {
+  background: var(--success);
+  color: white;
+}
+
+/* Info del empleado */
+.employee-info {
+  background: #f0f9ff;
+  padding: 15px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 20px;
+  border-left: 4px solid var(--info);
+}
+
+.employee-info h3 {
+  margin: 0 0 5px 0;
+  color: #1e40af;
+  font-size: 18px;
+}
+
+.employee-info .details {
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* Controles */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.controls .info {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.controls .info strong {
+  color: var(--accent);
+  font-size: 16px;
+}
+
+/* Tabla */
+.table-wrapper {
+  max-height: 400px;
+  overflow: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gray-200);
+  margin-bottom: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  background: var(--primary);
+  color: white;
+  z-index: 10;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+th {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.chk-col {
+  width: 40px;
+  text-align: center;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Totales */
+.totals {
+  background: #f0fdf4;
+  padding: 15px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  border: 1px solid #bbf7d0;
+}
+
+.totals .label {
+  color: #166534;
+}
+
+.totals .value {
+  font-size: 20px;
+  color: var(--success);
+}
+
+/* Historial */
+.history {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gray-200);
+}
+
+.history h4 {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.history-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .search-section {
+    flex-direction: column;
+  }
+
+  input[type="text"] {
+    width: 100%;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  th, td {
+    padding: 8px;
+    font-size: 12px;
+  }
+}
